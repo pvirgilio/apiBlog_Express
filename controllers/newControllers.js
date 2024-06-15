@@ -3,6 +3,7 @@ const {
   postNews,
   deleteNews,
   verifyId,
+  getNewsId,
 } = require("../models/newsModel");
 const fs = require("fs");
 const path = require("path");
@@ -10,6 +11,12 @@ const path = require("path");
 async function showAllNews(req, res) {
   const news = await getAllNews();
   res.status(200).json({ news, message: "Notícias achadas com sucesso!" });
+}
+
+async function requestNewsId(req, res) {
+  const { id } = req.params;
+  const news = await getNewsId(id);
+  res.status(200).json({ news, message: "Notícia achada com sucesso!" });
 }
 
 async function postAllNews(req, res) {
@@ -64,4 +71,5 @@ module.exports = {
   showAllNews,
   postAllNews,
   showDeleteNews,
+  requestNewsId,
 };

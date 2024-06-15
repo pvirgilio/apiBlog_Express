@@ -13,6 +13,15 @@ const getAllNews = async () => {
   }
 };
 
+const getNewsId = async (id) => {
+  try {
+    const news = await connection.query(`SELECT * FROM news WHERE id = ${id}`);
+    return news[0];
+  } catch (error) {
+    console.error(`Error: ${error}`);
+  }
+};
+
 //* Function to post news
 const postNews = async (author, title, content, buttonText, image) => {
   try {
@@ -50,4 +59,5 @@ module.exports = {
   postNews,
   deleteNews,
   verifyId,
+  getNewsId,
 };
