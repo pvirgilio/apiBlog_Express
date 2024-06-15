@@ -25,5 +25,6 @@ O que você precisa para instalar o software e como instalá-lo:
 ## Rotas da API
 
 - `GET /news`: Mostra todas as notícias
+- `GET /news:id`: Mostra a notícia de acordo com o id.
 - `POST /news`: Posta uma nova notícia
 - `DELETE /news/:id`: Exclui uma notícia pelo ID
