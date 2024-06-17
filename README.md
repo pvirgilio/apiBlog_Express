@@ -26,5 +26,10 @@ O que você precisa para instalar o software e como instalá-lo:
 
 - `GET /news`: Mostra todas as notícias
 - `GET /news:id`: Mostra a notícia de acordo com o id.
+- `GET /categorias`: Mostra as categorias existentes.
+- 
 - `POST /news`: Posta uma nova notícia
+- `POST /categorias`: Adiciona uma nova categoria.
+- 
 - `DELETE /news/:id`: Exclui uma notícia pelo ID
+- `DELETE /categorias/:id`: Exclui uma categoria pelo ID
