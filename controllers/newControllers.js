@@ -4,6 +4,10 @@ const {
   deleteNews,
   verifyId,
   getNewsId,
+  getCategoriesAll,
+  categoriesName,
+  postCategoriesAll,
+  deleteCategories,
 } = require("../models/newsModel");
 const fs = require("fs");
 const path = require("path");
@@ -67,9 +71,40 @@ async function showDeleteNews(req, res) {
   }
 }
 
+async function sendCategoriesAll(req, res) {
+  const { name } = req.body;
+  const categoriesNameVerify = await categoriesName(name);
+  if (categoriesNameVerify.length === 0) {
+    const categories = await postCategoriesAll(name);
+    res
+      .status(200)
+      .json({ categories, message: "Categoria postada com sucesso!" });
+  } else {
+    res.status(404).json({ message: "Categoria já existe!" });
+  }
+}
+
+async function receiveCategoriesAll(req, res) {
+  const categories = await getCategoriesAll();
+  res
+    .status(200)
+    .json({ categories, message: "Categorias achadas com sucesso!" });
+}
+
+async function excludeCategories(req, res) {
+  const { id } = req.params;
+  const categories = await deleteCategories(id);
+  res
+    .status(200)
+    .json({ categories, message: "Categoria excluída com sucesso!" });
+}
+
 module.exports = {
   showAllNews,
   postAllNews,
   showDeleteNews,
   requestNewsId,
+  sendCategoriesAll,
+  receiveCategoriesAll,
+  excludeCategories,
 };

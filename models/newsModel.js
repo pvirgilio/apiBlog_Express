@@ -54,10 +54,58 @@ const verifyId = async (id) => {
   return news[0];
 };
 
+const postCategoriesAll = async (name) => {
+  try {
+    const categories = await connection.query(
+      "INSERT INTO categorias (name) VALUES (?)",
+      [name]
+    );
+    return categories;
+  } catch (error) {
+    console.error(`Error: ${error}`);
+  }
+};
+
+const categoriesName = async (name) => {
+  try {
+    const categories = await connection.query(
+      "SELECT * FROM categorias WHERE name = ?",
+      [name]
+    );
+    return categories[0];
+  } catch (error) {
+    console.error(`Error: ${error}`);
+  }
+};
+
+const getCategoriesAll = async () => {
+  try {
+    const categories = await connection.query("SELECT * FROM categorias");
+    return categories[0];
+  } catch (error) {
+    console.error(`Error: ${error}`);
+  }
+};
+
+const deleteCategories = async (id) => {
+  try {
+    const categories = await connection.query(
+      `DELETE FROM categorias WHERE id = ${id}`
+    );
+    return categories;
+  } catch (error) {
+    console.error(`Erro ao excluir categoria: ${error}`);
+  }
+};
+
 module.exports = {
   getAllNews,
   postNews,
   deleteNews,
   verifyId,
   getNewsId,
+  postCategoriesAll,
+  getCategoriesAll,
+  categoriesName,
+  deleteCategories,
 };
